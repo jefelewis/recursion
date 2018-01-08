@@ -23,12 +23,17 @@ var stringifyJSON = function(obj) {
     return '"' + obj + '"';
   }
 
-  // Check if input is a number
+  // // Check if input is a Number
+  // else if(typeof(obj) === "number"){
+  //   return '"' + obj + '"';
+  // }
+
+  // Check if input is a boolean
   else if(typeof(obj) === 'boolean'){
     return String(obj);
   }
 
-  // Check if input is null
+  // Check if input is null/undefined
   else if(typeof(obj) === 'null'){
     return String(obj);
   }
