@@ -23,14 +23,19 @@ var parseJSON = function(json){
     return null;
   }
 
+  // Remove Quotations
+  else if((json.slice(0,1) === '"' || json.slice(0,1) === "'") && (json.slice(json.length) === '"' || json.slice(json.length - 1)  === "'")){
+    // Strips away the " or ' from the front and back
+    json = json.slice(1,json.slice - 1)
+
   // Check if input is a string
   else if(typeof(json) === "string"){
-
+    return
   }
 
   // Check if input is a number
   else if(typeof(json) === "number"){
-    return parseInt(json);
+    return Number(json);
   }
 
   // Check if input is boolean
@@ -53,5 +58,8 @@ var parseJSON = function(json){
   //
   // }
 
+
+
+  }
 
 };
