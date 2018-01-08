@@ -8,6 +8,16 @@ Description: Returns a collection of all elements in the document with the
 specified class name, as a NodeList object.
 */
 
+/*
+Need to check input type for:
+1. Null/Undefined
+2. String
+3. Number
+4. Boolean
+5. Array
+6. Object
+*/
+
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className){
 	var elements = document.all;

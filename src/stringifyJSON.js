@@ -6,6 +6,16 @@ Description: Takes an input (String, Boolean, Array, object) and outputs it as a
 string
 */
 
+/*
+Need to check input type for:
+1. Null/Undefined
+2. String
+3. Number
+4. Boolean
+5. Array
+6. Object
+*/
+
 // but you don't so you're going to write it from scratch:
 var stringifyJSON = function(obj) {
   // Check if input is a string
@@ -41,7 +51,7 @@ var stringifyJSON = function(obj) {
         // Breaks on iteration to skip over any function or undefined
         continue;
       }
-      // Push Key                             Push Value
+      // Push Key                          Push Value
       output.push(stringifyJSON(x) + ':' + stringifyJSON(obj[x]));
     }
     return '{' + output.join() + '}';
