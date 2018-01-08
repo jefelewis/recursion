@@ -34,24 +34,24 @@ var parseJSON = function(json){
   }
 
   // Check if input is boolean
-  else if(json === "true" || json === "false"){
-    if(json === "true"){
+  else if(json === "true" || json === true ||json === "false" || json === false){
+    if(json == "true" || json === true){
       return "true";
     }
     else{
       return "false";
     }
   }
-
-  // Check if input is array
-  else if(){
-
-  }
-
-  // Check if input is object
-  else if(){
-
-  }
+  //
+  // // Check if input is array
+  // else if(){
+  //
+  // }
+  //
+  // // Check if input is object
+  // else if(){
+  //
+  // }
 
 
 };
