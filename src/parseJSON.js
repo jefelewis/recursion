@@ -23,10 +23,10 @@ var parseJSON = function(json){
     return null;
   }
 
-  // Remove Quotations
-  else if((json.slice(0,1) === '"' || json.slice(0,1) === "'") && (json.slice(json.length) === '"' || json.slice(json.length - 1)  === "'")){
-    // Strips away the " or ' from the front and back
-    json = json.slice(1,json.slice - 1)
+  // // Remove Quotations
+  // else if((json.slice(0,1) === '"' || json.slice(0,1) === "'") && (json.slice(json.length) === '"' || json.slice(json.length - 1)  === "'")){
+  //   // Strips away the " or ' from the front and back
+  //   json = json.slice(1,json.slice - 1)
 
   // Check if input is a string
   else if(typeof(json) === "string"){
@@ -47,7 +47,7 @@ var parseJSON = function(json){
       return "false";
     }
   }
-  //
+  
   // // Check if input is array
   // else if(){
   //
@@ -58,8 +58,5 @@ var parseJSON = function(json){
   //
   // }
 
-
-
-  }
 
 };
