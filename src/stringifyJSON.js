@@ -18,8 +18,13 @@ Need to check input type for:
 
 // but you don't so you're going to write it from scratch:
 var stringifyJSON = function(obj) {
+  // Check if input is null/undefined
+  if(typeof(obj) === 'null'){
+    return String(obj);
+  }
+
   // Check if input is a string
-  if(typeof(obj) === 'string'){
+  else if(typeof(obj) === 'string'){
     return '"' + obj + '"';
   }
 
@@ -30,11 +35,6 @@ var stringifyJSON = function(obj) {
 
   // Check if input is a boolean
   else if(typeof(obj) === 'boolean'){
-    return String(obj);
-  }
-
-  // Check if input is null/undefined
-  else if(typeof(obj) === 'null'){
     return String(obj);
   }
 
