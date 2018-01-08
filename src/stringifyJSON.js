@@ -1,47 +1,51 @@
 // this is what you would do if you liked things to be easy:
 // var stringifyJSON = JSON.stringify;
 
+/*
+Description: Takes an input (String, Boolean, Array, object) and outputs it as a
+string
+*/
+
 // but you don't so you're going to write it from scratch:
-
-var stringifyJSON = function(obj){
-  // HRP: MODIFED
-  // Check to see if input is a string
-  if(typeof obj === "string" || typeof obj === "number" || typeof obj === "boolean"){
-    return "'" + obj + "'"
+var stringifyJSON = function(obj) {
+  // Check if input is a string
+  if(typeof(obj) === 'string'){
+    return '"' + obj + '"';
   }
 
-  // Check to see if input is an array
+  // Check if input is a number
+  else if(typeof(obj) === 'boolean'){
+    return String(obj);
+  }
+
+  // Check if input is null
+  else if(typeof(obj) === 'null'){
+    return String(obj);
+  }
+
+  // Check if input is an Array
   else if(Array.isArray(obj)){
-
+    // Iterate through each element in the array
+    obj = obj.map(function(element){
+      return stringifyJSON(element);
+    });
+    return '[' + obj + ']';
   }
 
-
-  // Check to see if input is a object
-  else if(typeof obj === "object"){
-
+  // Check if input is an object
+  else if(obj && typeof(obj) === 'object'){
+    var output = [];
+    for(var x in obj){
+      // Check if object contains a function or is undefined
+      if(typeof(obj[x]) === 'function' || typeof(obj[x]) === 'undefined'){
+        // Breaks on iteration to skip over any function or undefined
+        continue;
+      }
+      // Push Key                             Push Value
+      output.push(stringifyJSON(x) + ':' + stringifyJSON(obj[x]));
+    }
+    return '{' + output.join() + '}';
   }
-  else{
 
-  }
-}
-
-
-// String Test
-console.log(stringifyJSON("String"));
-
-// Number Test
-console.log(stringifyJSON(10));
-
-// Boolean Test
-console.log(stringifyJSON(true));
-
-// Undefined Test
-console.log(stringifyJSON());
-
-// Objects Test
-console.log(stringifyJSON({Name: "Jeff", Age: 25, Tall: true, Hobbies: null}));
-
-// Arrays Test
-console.log(stringifyJSON(["Jeff", 25, true, null]));
-
-// Function Test?
+  return String(obj);
+};
