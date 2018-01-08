@@ -19,13 +19,13 @@ Need to check input type for:
 // but you're not, so you'll write it from scratch:
 var parseJSON = function(json){
   // Check if input is null/undefined
-  if(typeof(json) === "null"){
+  if(json.length === 0){
     return null;
   }
 
   // Check if input is a string
   else if(typeof(json) === "string"){
-    
+
   }
 
   // Check if input is a number
@@ -34,13 +34,23 @@ var parseJSON = function(json){
   }
 
   // Check if input is boolean
-  else if(typeof(json) === "boolean"){
-    if(json === true){
-      return true;
+  else if(json === "true" || json === "false"){
+    if(json === "true"){
+      return "true";
     }
     else{
-      return false;
+      return "false";
     }
+  }
+
+  // Check if input is array
+  else if(){
+
+  }
+
+  // Check if input is object
+  else if(){
+
   }
 
 
