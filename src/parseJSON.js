@@ -18,19 +18,32 @@ Need to check input type for:
 
 // but you're not, so you'll write it from scratch:
 var parseJSON = function(json){
+  // HELPER FUNCTIONS
+  // Global Variables
+  var startIndex = json.slice(0,1);
+  var endIndex = json.slice(json.length - 1);
+
+  // Remove Quotations from input
+  function unStringify(str){
+    // Searches for " or ' at the Start and End index
+    if((startIndex === '\"' || startIndex === "\'") && (endIndex === '\"' || endIndex === "\'")){
+      //
+      return str.slice(startIndex, endIndex);
+    }
+    return str;
+  }
+
+
+
+  // BASE CASES
   // Check if input is null/undefined
   if(json.length === 0){
     return null;
   }
 
-  // // Remove Quotations
-  // else if((json.slice(0,1) === '"' || json.slice(0,1) === "'") && (json.slice(json.length) === '"' || json.slice(json.length - 1)  === "'")){
-  //   // Strips away the " or ' from the front and back
-  //   json = json.slice(1,json.slice - 1)
-
   // Check if input is a string
   else if(typeof(json) === "string"){
-    return
+    return unStringify(json);
   }
 
   // Check if input is a number
@@ -39,24 +52,46 @@ var parseJSON = function(json){
   }
 
   // Check if input is boolean
-  else if(json === "true" || json === true ||json === "false" || json === false){
-    if(json == "true" || json === true){
-      return "true";
-    }
-    else{
-      return "false";
-    }
+  else if(unStringify(json) === true){
+    return true;
   }
-  
-  // // Check if input is array
-  // else if(){
-  //
-  // }
-  //
-  // // Check if input is object
-  // else if(){
-  //
-  // }
+  else if(unStringify(json) === false){
+    return false;
+  }
+
+
+
+  // RECURSIVE CASES
+  // Check if input is array
+  else if(startIndex === '[' && endIndex === ']'){
+    // Check to see if array is empty
+    if(json === "[]"){
+      return [];
+    }
+
+    // Retrieve array data
+    var arrayData = json.slice(startIndex,endIndex);
+    // Split up each array element
+    var arrayElement = arrayData.split(",");
+
+    // Use recursion to Iterate through each item
+    var output = arrayElement.map(function(element, index, array)){
+      return parseJSON(element);
+    )};
+
+    return output;
+  }
+
+  // Check if input is object
+  else if(startIndex === '{' && endIndex === '}'){
+    // Check to see if object is empty
+    if(json === "{}"){
+      return {};
+    }
+
+
+
+  }
 
 
 };
