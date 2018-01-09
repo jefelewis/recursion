@@ -26,7 +26,7 @@ var parseJSON = function(json){
   // Remove Quotations from input
   function unStringify(str){
     // Searches for " or ' at the Start and End index
-    if((startIndex === '\"' || startIndex === "\'") && (endIndex === '\"' || endIndex === "\'")){
+    if((startIndex === '\"' || startIndex === '\'') && (endIndex === '\"' || endIndex === '\'')){
       //
       return str.slice(startIndex, endIndex);
     }
@@ -69,15 +69,16 @@ var parseJSON = function(json){
       return [];
     }
 
+    // All other instances
     // Retrieve array data
     var arrayData = json.slice(startIndex,endIndex);
     // Split up each array element
     var arrayElement = arrayData.split(",");
 
     // Use recursion to Iterate through each item
-    var output = arrayElement.map(function(element, index, array)){
+    var output = arrayElement.map(function(element, index, array){
       return parseJSON(element);
-    )};
+    });
 
     return output;
   }
@@ -89,9 +90,10 @@ var parseJSON = function(json){
       return {};
     }
 
-
-
+    // All other instances
   }
+
+
 
 
 };
