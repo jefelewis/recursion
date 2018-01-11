@@ -26,6 +26,8 @@ var stringifyJSON = function(obj) {
 
 
   // BASE CASES
+  // toString() a value has to exist
+  // String() can be used on null or undefined
   // Check if input is Null/Undefined
   if(typeof(obj) === 'null'){
     return addQuotes(obj);
