@@ -18,30 +18,42 @@ Need to check input type for:
 
 // but you don't so you're going to write it from scratch:
 var stringifyJSON = function(obj) {
-  // Check if input is null/undefined
+  // HELPER FUNCTIONS
+  function addQuotes(obj){
+    return '"' + obj + '"'
+  }
+
+
+
+  // BASE CASES
+  // Check if input is Null/Undefined
   if(typeof(obj) === 'null'){
-    return String(obj);
+    return addQuotes(obj);
   }
 
-  // Check if input is a string
+  // Check if input is a String
   else if(typeof(obj) === 'string'){
-    return '"' + obj + '"';
+    return addQuotes(obj);
   }
 
-  // // Check if input is a Number
-  // else if(typeof(obj) === "number"){
-  //   return '"' + obj + '"';
-  // }
+  // Check if input is a Number
+  else if(typeof(obj) === 'number'){
+    return obj.toString();
+  }
 
-  // Check if input is a boolean
+  // Check if input is a Boolean
   else if(typeof(obj) === 'boolean'){
-    return String(obj);
+    return obj.toString();
   }
 
+
+
+  // RECURSIVE CASES
   // Check if input is an Array
   else if(Array.isArray(obj)){
     // Iterate through each element in the array
     obj = obj.map(function(element){
+      // Use recursion to iterate through each item
       return stringifyJSON(element);
     });
     return '[' + obj + ']';
@@ -56,7 +68,7 @@ var stringifyJSON = function(obj) {
         // Breaks on iteration to skip over any function or undefined
         continue;
       }
-      // Push Key                          Push Value
+      // Push Key                          // Push Value
       output.push(stringifyJSON(x) + ':' + stringifyJSON(obj[x]));
     }
     return '{' + output.join() + '}';

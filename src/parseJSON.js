@@ -36,22 +36,22 @@ var parseJSON = function(json){
 
 
   // BASE CASES
-  // Check if input is null/undefined
+  // Check if input is Null/Undefined
   if(json.length === 0){
     return null;
   }
 
-  // Check if input is a string
-  else if(typeof(json) === "string"){
+  // Check if input is a String
+  else if(typeof(json) === 'string'){
     return unStringify(json);
   }
 
-  // Check if input is a number
-  else if(typeof(json) === "number"){
+  // Check if input is a Number
+  else if(typeof(json) === 'number'){
     return Number(json);
   }
 
-  // Check if input is boolean
+  // Check if input is Boolean
   else if(unStringify(json) === true){
     return true;
   }
@@ -75,7 +75,7 @@ var parseJSON = function(json){
     // Split up each array element
     var arrayElement = arrayData.split(",");
 
-    // Use recursion to Iterate through each item
+    // Use recursion to iterate through each item
     var output = arrayElement.map(function(element, index, array){
       return parseJSON(element);
     });
