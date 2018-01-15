@@ -19,27 +19,23 @@ Need to check input type for:
 */
 
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className){
-	var elements = document.all;
-  var elementsArray = [];
+var getElementsByClassName = function(className, element){
 
-  function findClass(elementIndex = 0, classListIndex = 0){
-		// Base case:
-		if(elementIndex === elements.length){
-			return elementsArray;
-		}
+  var elements = [];
+	var element = element || document.body;
 
-		// Recursive case:
-		if(elements[elementIndex]["classList"].length === classListIndex){
-			return findClass(elementIndex + 1);
-		}
-		else if(elements[elementIndex]["classList"][classListIndex] === className){
-			elementsArray.push(elements[elementIndex]);
-			return findClass(elementIndex + 1)
-		}
-	  else{
-			return findClass(elementIndex, classListIndex + 1);
-		}
+	// Compare element's classname with ClassName
+	var part = element.className.split(' ');
+	//
+	if(part.indexOf(className) >= 0){
+		elements.push(element);
 	}
-	return findClass();
+
+	// Iterate through the children
+	for(var i = 0; i < element.children.length; i++){
+		var results = getElementsByClassName(className, element.children[i]);
+		elements = elements.concat(results);
+	}
+	return elements;
+
 };
